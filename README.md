@@ -7,3 +7,8 @@
 // (GET)    http://localhost:8000/api/v1/tasks/{id} - Показать задание
 // (PUT)    http://localhost:8000/api/v1/tasks/{id} - Редактировать задание
 // (DELETE) http://localhost:8000/api/v1/tasks/{id} - Удалить задание
+
+Заголовки API
+'headers' => [
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer '.$accessToken,
