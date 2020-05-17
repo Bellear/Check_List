@@ -28,6 +28,9 @@
     <expand />
     <select />
   </component>
+  <component name="FavoritesManager">
+    <favorites_list name="CheckList" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -164,7 +167,7 @@
   <component name="ProjectId" id="1ZqsQgj2n7E5shPWUFiBygIs62z" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/users" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Check_List" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -215,6 +218,10 @@
       <workItem from="1585990987577" duration="8749000" />
       <workItem from="1586085738214" duration="8141000" />
       <workItem from="1586169363289" duration="8249000" />
+      <workItem from="1586184287191" duration="123000" />
+      <workItem from="1589383038325" duration="1936000" />
+      <workItem from="1589631520717" duration="18407000" />
+      <workItem from="1589700507223" duration="154000" />
     </task>
     <servers />
   </component>

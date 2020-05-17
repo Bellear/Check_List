@@ -38,13 +38,20 @@ class TaskController extends Controller
                 ->orderBy('tasks.created_at', 'desc')
                 ->paginate(3);
             return view('tasks.index', compact('tasks'));
+//            $tasks = Task::with('user')
+//                ->orderBy('tasks.created_at', 'desc')
+//                ->paginate(3);
+//            dd($tasks[0]->name);
+//            dd($tasks[0]->user->name);
+//            return view('tasks.index', compact('tasks'));
         }
-
-
-        $tasks = Task::join('users', 'executor_id', '=', 'users.id')
-            ->where('executor_id', 'like', '%' . \Auth::user()->id . '%')
-            ->orderBy('tasks.created_at', 'desc')
-            ->paginate(3);
+//        $tasks = Task::join('users', 'executor_id', '=', 'users.id')
+//            ->where('executor_id', 'like', '%' . \Auth::user()->id . '%')
+//            ->orderBy('tasks.created_at', 'desc')
+//            ->paginate(3);
+        $tasks = User::find(\Auth::user()->id)->tasks()
+                ->orderBy('tasks.created_at', 'desc')
+                ->paginate(3);
         return view('tasks.index', compact('tasks'));
     }
 
@@ -72,17 +79,16 @@ class TaskController extends Controller
         $task->deadline = $request->date;
 
         if(\Auth::user()->is_admin == 1){
-            $user = \DB::table('users')
-                ->where('name', 'like', '%' . $request->executor . '%')
-                ->get();
-            if (!isset($user[0])){
+
+            $user = User::where('name', 'like', '%' . $request->executor . '%')
+                ->first();
+            if (!isset($user['name'])){
                 return redirect()->route('task.create')->with('success', 'Исполнитель не найден');
             } else {
-                $task->executor_id = $user[0]->id;
+                $task->executor_id = $user['id'];
             }
         } else {
-            $task2 = Task::join('users', 'executor_id', '=', 'users.id')
-                ->where('executor_id', 'like', '%' . \Auth::user()->id . '%')
+            $task2 = User::find(\Auth::user()->id)->tasks()
                 ->get();
             if ($task2->count()>=\Auth::user()->maxtasks){
                 return redirect()->route('task.create')->with('success', 'Превышение максимального допустимого количества заданий');
@@ -105,8 +111,8 @@ class TaskController extends Controller
      */
     public function show($id)
     {
-        $task = Task::join('users', 'executor_id', '=', 'users.id')
-            ->find($id);
+//        $task = Task::join('users', 'executor_id', '=', 'users.id')
+//            ->find($id);
 
         if ($task->executor_id != \Auth::user()->id && \Auth::user()->is_admin != 1){
             return redirect()->route('task.index')->withErrors('Вы не можете просматривать данное задание');

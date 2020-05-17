@@ -50,6 +50,9 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        if ($exception instanceof \Illuminate\Database\Eloquent\ModelNotFoundException) {
+            return response()->json(['error'=>1,'message'=> 'Task Not Found' ], 400);
+        }
         return parent::render($request, $exception);
     }
 }

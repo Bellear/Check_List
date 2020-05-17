@@ -47,4 +47,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->blocked;
     }
+
+    public function tasks()
+    {
+        return $this->hasMany('App\Task', 'executor_id');
+    }
 }

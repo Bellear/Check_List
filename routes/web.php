@@ -26,6 +26,7 @@ Route::delete('task/{id}', 'TaskController@destroy') -> middleware('blocked') ->
 
 Auth::routes();
 
+
 Route::get('users/', 'UserController@index') -> name('user.index');
 Route::get('user/show/{id}', 'UserController@show') -> name('user.show');
 Route::get('user/edit/{id}', 'UserController@edit') -> name('user.edit');
